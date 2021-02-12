@@ -1,0 +1,19 @@
+{
+  "name": "grunt-js-boilerplate",
+  "version": "0.1.0",
+  "description": "Grunt starter",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Karol Badeja",
+  "license": "ISC",
+  "devDependencies": {
+    "grunt": "^1.3.0",
+    "grunt-autoprefixer": "^3.0.4",
+    "grunt-contrib-clean": "^2.0.0",
+    "grunt-contrib-jshint": "^3.0.0",
+    "grunt-contrib-sass": "^2.0.0"
+  },
+  "dependencies": {}
+}
