@@ -1,5 +1,7 @@
 module.exports = function (grunt) {
   grunt.config.init({
+    pkg: grunt.file.readJSON("package.json"),
+
     clean: {
       dev: {
         src: ["src/css/*"],
@@ -48,6 +50,10 @@ module.exports = function (grunt) {
       },
     },
     uglify: {
+      options: {
+        banner:
+          "/* <%= pkg.name  %> - <%= pkg.version  %> - <%= grunt.template.today('yyyy') %>  */\n",
+      },
       prod: {
         options: {
           mangle: false,
