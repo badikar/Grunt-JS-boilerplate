@@ -11,7 +11,7 @@ module.exports = function (grunt) {
         eqeqeq: true,
       },
       dev: {
-        src: ["/src/js/**/*.js"],
+        src: "/src/js/**/*.js",
       },
     },
 
@@ -72,6 +72,30 @@ module.exports = function (grunt) {
         },
       },
     },
+    imagemin: {
+      options: {
+        optimazationLevel: 3,
+      },
+      prod: {
+        files: [
+          {
+            expand: true,
+            cwd: "src/images/",
+            src: "*",
+            dest: "build/images/",
+          },
+        ],
+      },
+    },
+    watch: {
+      options: {
+        livereload: true,
+      },
+      dev: {
+        files: ["src/**/*", "!src/css/*"],
+        tasks: ["dev"],
+      },
+    },
   });
 
   grunt.loadNpmTasks("grunt-contrib-jshint");
@@ -82,9 +106,11 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks("grunt-contrib-uglify");
   grunt.loadNpmTasks("grunt-contrib-cssmin");
   grunt.loadNpmTasks("grunt-contrib-htmlmin");
+  grunt.loadNpmTasks("grunt-contrib-imagemin");
+  grunt.loadNpmTasks("grunt-contrib-watch");
 
   grunt.registerTask("dev", ["clean", "jshint", "sass", "autoprefixer"]);
-  grunt.registerTask("prod", ["concat", "uglify", "cssmin", "htmlmin"]);
+  grunt.registerTask("prod", ["concat", "uglify", "cssmin", "imagemin"]);
   grunt.registerTask("default", "dev");
   grunt.registerTask("build", ["dev", "prod"]);
 };

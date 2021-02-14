@@ -1,1 +1,1 @@
-const two = "two";
+console.log("two");
