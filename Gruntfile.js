@@ -4,6 +4,9 @@ module.exports = function (grunt) {
       dev: {
         src: ["src/css/*"],
       },
+      prod: {
+        src: ["build/*", "build/**/*"],
+      },
     },
 
     jshint: {
@@ -96,6 +99,19 @@ module.exports = function (grunt) {
         tasks: ["dev"],
       },
     },
+    copy: {
+      src: "src/index.html",
+      dest: "build/index.html",
+    },
+  });
+
+  grunt.registerTask("copy", "copy files", () => {
+    const src = grunt.config.get("copy.src"),
+      dest = grunt.config.get("copy.dest");
+
+    grunt.file.copy(src, dest);
+
+    grunt.log.ok("File copied!");
   });
 
   grunt.loadNpmTasks("grunt-contrib-jshint");
@@ -110,7 +126,7 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks("grunt-contrib-watch");
 
   grunt.registerTask("dev", ["clean", "jshint", "sass", "autoprefixer"]);
-  grunt.registerTask("prod", ["concat", "uglify", "cssmin", "imagemin"]);
+  grunt.registerTask("prod", ["concat", "uglify", "cssmin", "imagemin", "copy"]);
   grunt.registerTask("default", "dev");
   grunt.registerTask("build", ["dev", "prod"]);
 };
